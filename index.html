@@ -1,148 +1,115 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>趙宇倫的個人網頁</title>
-    <style>
-        :root {
-            --primary-blue: #0984e3;
-            --bg-gray: #f4f7f6;
-            --text-dark: #2d3436;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的個人網頁</title>
 
-        body {
-            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
-            line-height: 1.6;
-            background-color: var(--bg-gray);
-            color: var(--text-dark);
-            margin: 0;
-            padding: 20px;
-        }
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    text-align: center;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+/* 導覽列 */
+nav {
+    background: #333;
+    padding: 10px;
+}
 
-        header {
-            text-align: center;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
+nav button {
+    color: white;
+    background: #555;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
 
-        /* --- 按鈕樣式 --- */
-        .btn-group {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+nav button:hover {
+    background: #777;
+}
 
-        .toggle-btn {
-            padding: 8px 20px;
-            margin: 0 5px;
-            border: 2px solid var(--primary-blue);
-            background: white;
-            color: var(--primary-blue);
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+/* 區塊 */
+.section {
+    display: none;
+    padding: 20px;
+}
 
-        .toggle-btn.active {
-            background: var(--primary-blue);
-            color: white;
-        }
+.active {
+    display: block;
+}
 
-        h2 {
-            color: var(--primary-blue);
-            font-size: 1.4em;
-            margin-bottom: 15px;
-        }
+/* 📱 手機 */
+.mobile-only {
+    display: none;
+}
 
-        .skill-tag {
-            display: inline-block;
-            background: #e1f0ff;
-            color: #0066cc;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            margin: 0 5px 10px 0;
-        }
+/* 💻 桌機 */
+.desktop-only {
+    display: block;
+}
 
-        /* 預設隱藏詳細版，只顯示簡潔版 */
-        .desktop-content { display: none; }
-        .mobile-content { display: block; }
-    </style>
+/* 手機畫面 */
+@media (max-width: 768px) {
+    body {
+        background-color: #d0ebff;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+}
+
+/* 桌機畫面 */
+@media (min-width: 769px) {
+    body {
+        background-color: #d3f9d8;
+    }
+}
+</style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <h1>趙宇倫</h1>
-        <p>朝陽科技大學 | 資訊工程系</p>
-    </header>
+<h1>我的個人網站</h1>
 
-    <div class="btn-group">
-        <button class="toggle-btn active" onclick="showContent('mobile')">簡潔模式 (手機)</button>
-        <button class="toggle-btn" onclick="showContent('desktop')">詳細模式 (桌電)</button>
-    </div>
+<!-- 📱💻 裝置提示 -->
+<p class="desktop-only">你現在使用的是💻電腦</p>
+<p class="mobile-only">你現在使用的是📱手機</p>
 
-    <section>
-        <h2>👋 個人簡介</h2>
-        <div id="intro-mobile" class="mobile-content">
-            <p>我是趙宇倫，目前就讀資工系。我熱衷於學習程式開發與邏輯挑戰。</p>
-        </div>
-        <div id="intro-desktop" class="desktop-content">
-            <p>你好！我是趙宇倫，目前就讀於朝陽科技大學資訊工程系。在大學期間，我致力於掌握電腦科學的核心基礎，並對開發充滿熱忱，期望能成為優秀的軟體工程師。</p>
-        </div>
-    </section>
+<!-- 🔁 切換按鈕 -->
+<nav>
+    <button onclick="showSection('about')">個人簡介</button>
+    <button onclick="showSection('skill')">興趣專長</button>
+</nav>
 
-    <section>
-        <h2>🛠️ 興趣與專長</h2>
-        <div id="skill-mobile" class="mobile-content">
-            <ul>
-                <li><strong>語言：</strong> C/C++, Python</li>
-                <li><strong>工具：</strong> Git, GitHub, VS Code</li>
-            </ul>
-        </div>
-        <div id="skill-desktop" class="desktop-content">
-            <p><strong>💻 正在學習開發語言：</strong></p>
-            <div class="skill-tags">
-                <span class="skill-tag">C / C++</span>
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">HTML</span>
-            </div>
-            <p><strong>🌟 專業興趣：</strong> 練習程式語言。</p>
-        </div>
-    </section>
+<!-- 個人簡介 -->
+<div id="about" class="section active">
+    <h2>個人簡介</h2>
+    <p>我是趙宇倫，就讀朝陽科大。目前在練習網頁設計</p>
+    <p>這是桌機與手機都會看到的內容。</p>
+</div>
+
+<!-- 興趣專長 -->
+<div id="skill" class="section">
+    <h2>興趣專長</h2>
+    <p>✔ 打遊戲</p>
+    <p>✔ 學習程式</p>
 </div>
 
 <script>
-    function showContent(mode) {
-        const mobileElems = document.querySelectorAll('.mobile-content');
-        const desktopElems = document.querySelectorAll('.desktop-content');
-        const buttons = document.querySelectorAll('.toggle-btn');
-
-        if (mode === 'mobile') {
-            mobileElems.forEach(el => el.style.display = 'block');
-            desktopElems.forEach(el => el.style.display = 'none');
-            buttons[0].classList.add('active');
-            buttons[1].classList.remove('active');
-        } else {
-            mobileElems.forEach(el => el.style.display = 'none');
-            desktopElems.forEach(el => el.style.display = 'block');
-            buttons[0].classList.remove('active');
-            buttons[1].classList.add('active');
-        }
-    }
+function showSection(id) {
+    let sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
 </script>
-    
+
 </body>
 </html>
