@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的個人網頁</title>
+
+<style>
+body {
+    font-family: Arial;
+    margin: 0;
+    text-align: center;
+}
+
+/* 導覽列 */
+nav {
+    background: #333;
+    padding: 10px;
+}
+
+nav button {
+    color: white;
+    background: #555;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #777;
+}
+
+/* 區塊 */
+.section {
+    display: none;
+    padding: 20px;
+}
+
+.active {
+    display: block;
+}
+
+/* 📱 手機 */
+.mobile-only {
+    display: none;
+}
+
+/* 💻 桌機 */
+.desktop-only {
+    display: block;
+}
+
+/* 手機畫面 */
+@media (max-width: 768px) {
+    body {
+        background-color: #d0ebff;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+}
+
+/* 桌機畫面 */
+@media (min-width: 769px) {
+    body {
+        background-color: #d3f9d8;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h1>我的個人網站</h1>
+
+<!-- 📱💻 裝置提示 -->
+<p class="desktop-only">你現在使用的是💻電腦</p>
+<p class="mobile-only">你現在使用的是📱手機</p>
+
+<!-- 🔁 切換按鈕 -->
+<nav>
+    <button onclick="showSection('about')">個人簡介</button>
+    <button onclick="showSection('skill')">興趣專長</button>
+</nav>
+
+<!-- 個人簡介 -->
+<div id="about" class="section active">
+    <h2>個人簡介</h2>
+    <p>我是趙宇倫，就讀朝陽科大。</p>
+    <p>這是桌機與手機都會看到的內容。</p>
+</div>
+
+<!-- 興趣專長 -->
+<div id="skill" class="section">
+    <h2>興趣專長</h2>
+    <p>✔ 打遊戲</p>
+    <p>✔ 學習程式</p>
+</div>
+
+<script>
+function showSection(id) {
+    let sections = document.querySelectorAll('.section');
+    sections.forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
