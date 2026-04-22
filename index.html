@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>個人網頁練習</title>
+    <title>趙宇倫的個人網頁</title>
     <style>
-        /* 基礎風格設定 */
         :root {
             --primary-blue: #0984e3;
             --bg-gray: #f4f7f6;
@@ -37,6 +36,29 @@
             margin-bottom: 30px;
         }
 
+        /* --- 按鈕樣式 --- */
+        .btn-group {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .toggle-btn {
+            padding: 8px 20px;
+            margin: 0 5px;
+            border: 2px solid var(--primary-blue);
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .toggle-btn.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+
         h2 {
             color: var(--primary-blue);
             font-size: 1.4em;
@@ -53,20 +75,9 @@
             margin: 0 5px 10px 0;
         }
 
-        /* --- 響應式顯示切換邏輯 --- */
-        
-        /* 預設：隱藏電腦版內容，顯示手機版內容 */
+        /* 預設隱藏詳細版，只顯示簡潔版 */
         .desktop-content { display: none; }
         .mobile-content { display: block; }
-
-        /* 當螢幕寬度大於 768px (桌電/平板) */
-        @media (min-width: 768px) {
-            .mobile-content { display: none; }
-            .desktop-content { display: block; }
-            
-            body { padding: 50px; }
-            .container { padding: 50px; }
-        }
     </style>
 </head>
 <body>
@@ -74,43 +85,65 @@
 <div class="container">
     <header>
         <h1>趙宇倫</h1>
-        <p> 朝陽科技大學 | 資訊工程系</p>
+        <p>朝陽科技大學 | 資訊工程系</p>
     </header>
+
+    <div class="btn-group">
+        <button class="toggle-btn active" onclick="showContent('mobile')">簡潔模式 (手機)</button>
+        <button class="toggle-btn" onclick="showContent('desktop')">詳細模式 (桌電)</button>
+    </div>
 
     <section>
         <h2>👋 個人簡介</h2>
-        
-        <div class="mobile-content">
-            <p>我是趙宇倫，目前就讀資工系。我熱衷於學習程式開發與邏輯挑戰，並提升自己的技術能力。</p>
+        <div id="intro-mobile" class="mobile-content">
+            <p>我是趙宇倫，目前就讀資工系。我熱衷於學習程式開發與邏輯挑戰。</p>
         </div>
-
-        <div class="desktop-content">
-            <p>你好！我是趙宇倫，目前就讀在朝陽科大資工系。在大學期間，我想掌握了電腦科學的核心基礎。</p>
+        <div id="intro-desktop" class="desktop-content">
+            <p>你好！我是趙宇倫，目前就讀於朝陽科技大學資訊工程系。在大學期間，我致力於掌握電腦科學的核心基礎，並對開發充滿熱忱，期望能成為優秀的軟體工程師。</p>
         </div>
     </section>
 
     <section>
         <h2>🛠️ 興趣與專長</h2>
-
-        <div class="mobile-content">
+        <div id="skill-mobile" class="mobile-content">
             <ul>
                 <li><strong>語言：</strong> C/C++, Python</li>
                 <li><strong>工具：</strong> Git, GitHub, VS Code</li>
             </ul>
         </div>
-
-        <div class="desktop-content">
+        <div id="skill-desktop" class="desktop-content">
             <p><strong>💻 正在學習開發語言：</strong></p>
             <div class="skill-tags">
                 <span class="skill-tag">C / C++</span>
-                <span class="skill-tag">Python </span>
+                <span class="skill-tag">Python</span>
                 <span class="skill-tag">Java</span>
-                <span class="skill-tag">HTML </span>
+                <span class="skill-tag">HTML / CSS</span>
+                <span class="skill-tag">Git / GitHub</span>
             </div>
-            
+            <p><strong>🌟 專業興趣：</strong> 演算法研究、自動化腳本開發、網頁前端設計。</p>
         </div>
     </section>
 </div>
+
+<script>
+    function showContent(mode) {
+        const mobileElems = document.querySelectorAll('.mobile-content');
+        const desktopElems = document.querySelectorAll('.desktop-content');
+        const buttons = document.querySelectorAll('.toggle-btn');
+
+        if (mode === 'mobile') {
+            mobileElems.forEach(el => el.style.display = 'block');
+            desktopElems.forEach(el => el.style.display = 'none');
+            buttons[0].classList.add('active');
+            buttons[1].classList.remove('active');
+        } else {
+            mobileElems.forEach(el => el.style.display = 'none');
+            desktopElems.forEach(el => el.style.display = 'block');
+            buttons[0].classList.remove('active');
+            buttons[1].classList.add('active');
+        }
+    }
+</script>
     
 </body>
 </html>
