@@ -1,115 +1,116 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的個人網頁</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>個人網頁練習</title>
+    <style>
+        /* 基礎風格設定 */
+        :root {
+            --primary-blue: #0984e3;
+            --bg-gray: #f4f7f6;
+            --text-dark: #2d3436;
+        }
 
-<style>
-body {
-    font-family: Arial;
-    margin: 0;
-    text-align: center;
-}
+        body {
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+            line-height: 1.6;
+            background-color: var(--bg-gray);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 20px;
+        }
 
-/* 導覽列 */
-nav {
-    background: #333;
-    padding: 10px;
-}
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
 
-nav button {
-    color: white;
-    background: #555;
-    border: none;
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-}
+        header {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
 
-nav button:hover {
-    background: #777;
-}
+        h2 {
+            color: var(--primary-blue);
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
 
-/* 區塊 */
-.section {
-    display: none;
-    padding: 20px;
-}
+        .skill-tag {
+            display: inline-block;
+            background: #e1f0ff;
+            color: #0066cc;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            margin: 0 5px 10px 0;
+        }
 
-.active {
-    display: block;
-}
+        /* --- 響應式顯示切換邏輯 --- */
+        
+        /* 預設：隱藏電腦版內容，顯示手機版內容 */
+        .desktop-content { display: none; }
+        .mobile-content { display: block; }
 
-/* 📱 手機 */
-.mobile-only {
-    display: none;
-}
-
-/* 💻 桌機 */
-.desktop-only {
-    display: block;
-}
-
-/* 手機畫面 */
-@media (max-width: 768px) {
-    body {
-        background-color: #d0ebff;
-    }
-
-    .mobile-only {
-        display: block;
-    }
-
-    .desktop-only {
-        display: none;
-    }
-}
-
-/* 桌機畫面 */
-@media (min-width: 769px) {
-    body {
-        background-color: #d3f9d8;
-    }
-}
-</style>
+        /* 當螢幕寬度大於 768px (桌電/平板) */
+        @media (min-width: 768px) {
+            .mobile-content { display: none; }
+            .desktop-content { display: block; }
+            
+            body { padding: 50px; }
+            .container { padding: 50px; }
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>我的個人網站</h1>
+<div class="container">
+    <header>
+        <h1>趙宇倫</h1>
+        <p>xxx 朝陽科技大學 | 資訊工程系</p>
+    </header>
 
-<!-- 📱💻 裝置提示 -->
-<p class="desktop-only">你現在使用的是💻電腦</p>
-<p class="mobile-only">你現在使用的是📱手機</p>
+    <section>
+        <h2>👋 個人簡介</h2>
+        
+        <div class="mobile-content">
+            <p>我是趙宇倫，目前就讀資工系。我熱衷於學習程式開發與邏輯挑戰，並提升自己的技術能力。</p>
+        </div>
 
-<!-- 🔁 切換按鈕 -->
-<nav>
-    <button onclick="showSection('about')">個人簡介</button>
-    <button onclick="showSection('skill')">興趣專長</button>
-</nav>
+        <div class="desktop-content">
+            <p>你好！我是趙宇倫，目前就讀在朝陽科大資工系。在大學期間，我想掌握了電腦科學的核心基礎。</p>
+        </div>
+    </section>
 
-<!-- 個人簡介 -->
-<div id="about" class="section active">
-    <h2>個人簡介</h2>
-    <p>我是趙宇倫，就讀朝陽科大。</p>
-    <p>這是桌機與手機都會看到的內容。</p>
+    <section>
+        <h2>🛠️ 興趣與專長</h2>
+
+        <div class="mobile-content">
+            <ul>
+                <li><strong>語言：</strong> C/C++, Python</li>
+                <li><strong>工具：</strong> Git, GitHub, VS Code</li>
+            </ul>
+        </div>
+
+        <div class="desktop-content">
+            <p><strong>💻 正在學習開發語言：</strong></p>
+            <div class="skill-tags">
+                <span class="skill-tag">C / C++</span>
+                <span class="skill-tag">Python </span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">HTML </span>
+            </div>
+            
+        </div>
+    </section>
 </div>
-
-<!-- 興趣專長 -->
-<div id="skill" class="section">
-    <h2>興趣專長</h2>
-    <p>✔ 打遊戲</p>
-    <p>✔ 學習程式</p>
-</div>
-
-<script>
-function showSection(id) {
-    let sections = document.querySelectorAll('.section');
-    sections.forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
-</script>
-
+    
 </body>
 </html>
